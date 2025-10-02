@@ -6,42 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokémon Tactics - Game Rules & Stats</title>
     <style>
-        /* Your existing CSS remains the same until we add the generation tabs styles */
-
-        /* Add generation tabs styles */
-        .generation-tabs {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 5px;
-            margin-bottom: 20px;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 10px;
-        }
-
-        .generation-tab {
-            padding: 8px 16px;
-            background-color: #e0e0e0;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-weight: bold;
-        }
-
-        .generation-tab.active {
-            background-color: #cc0000;
-            color: white;
-        }
-
-        .generation-content {
-            display: none;
-        }
-
-        .generation-content.active {
-            display: block;
-        }
-
-        /* Rest of your existing CSS remains unchanged */
+        /* Base Styles */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -169,6 +134,40 @@
             background-color: #f2f2f2;
         }
 
+        /* Generation Tabs */
+        .generation-tabs {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .generation-tab {
+            padding: 8px 16px;
+            background-color: #e0e0e0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        .generation-tab.active {
+            background-color: #cc0000;
+            color: white;
+        }
+
+        .generation-content {
+            display: none;
+        }
+
+        .generation-content.active {
+            display: block;
+        }
+
+        /* Pokémon Grid */
         .pokemon-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -249,6 +248,7 @@
             border-left: 3px solid #2196f3;
         }
 
+        /* Type Colors */
         .type-normal {
             background-color: #A8A878;
         }
@@ -321,6 +321,7 @@
             background-color: #705848;
         }
 
+        /* Search and Filter */
         .search-box {
             margin-bottom: 20px;
             padding: 10px;
@@ -563,6 +564,33 @@
             font-weight: bold;
         }
 
+        /* Loading and Load More Styles */
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2rem;
+            color: #666;
+            grid-column: 1 / -1;
+        }
+
+        .load-more-btn {
+            width: 100%;
+            padding: 15px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            cursor: pointer;
+            font-size: 1.1rem;
+            grid-column: 1 / -1;
+        }
+
+        .load-more-btn:hover {
+            background: #45a049;
+        }
+
+        /* Mobile Responsive Styles */
         @media (max-width: 768px) {
             .content {
                 flex-direction: column;
@@ -604,6 +632,15 @@
 
             .generation-tabs {
                 flex-direction: column;
+            }
+
+            .generation-tab {
+                width: 100%;
+                text-align: center;
+            }
+
+            .filter-buttons {
+                justify-content: center;
             }
         }
     </style>
@@ -765,10 +802,16 @@
             2: { start: 151, end: 251 },   // Gen 2: Chikorita to Celebi
             3: { start: 251, end: 386 },   // Gen 3: Treecko to Deoxys
             4: { start: 386, end: 497 },   // Gen 4: Turtwig to Arceus
-            5: { start: 497, end: 663 },    // Gen 5: Victini to Genesect
-            6: { start: 663, end: 790 }     //Gen  6
+            5: { start: 497, end: 663 },   // Gen 5: Victini to Genesect
+            6: { start: 663, end: 790 }    // Gen 6: Chespin to Volcanion
         };
 
+        // Performance optimization variables
+        let currentGeneration = 1;
+        const pokemonPerPage = 20;
+        let searchTimeout;
+
+        // Sample Pokémon data (in a real implementation, this would be in a separate file)
         const pokemonList = [
             {
                 id: 'bulbasaur',
@@ -11920,41 +11963,59 @@
             });
         }
 
-        // Function to render Pokémon by generation
-        function renderPokemonByGeneration(generation) {
+        // Function to show loading state
+        function showLoadingState(generation) {
+            const pokemonGrid = document.getElementById(`pokemonGrid-gen-${generation}`);
+            pokemonGrid.innerHTML = '<div class="loading">Loading Pokémon...</div>';
+        }
+
+        // Function to render Pokémon by generation with lazy loading
+        function renderPokemonChunk(generation, startIndex = 0) {
+            const pokemonGrid = document.getElementById(`pokemonGrid-gen-${generation}`);
             const searchTerm = document.getElementById('pokemonSearch').value.toLowerCase();
             const activeType = document.querySelector('.filter-btn.active').getAttribute('data-type');
-            const pokemonGrid = document.getElementById(`pokemonGrid-gen-${generation}`);
-
-            // Clear current Pokémon
-            pokemonGrid.innerHTML = '';
-
-            // Get the range for this generation
             const range = generationRanges[generation];
 
-            // Filter and display Pokémon for this generation
-            const filteredPokemon = pokemonList.filter((pokemon, index) => {
-                const matchesSearch = pokemon.name.toLowerCase().includes(searchTerm);
-                const matchesType = activeType === 'all' || pokemon.types.includes(activeType);
-                const inGeneration = index >= range.start && index < range.end;
-                return matchesSearch && matchesType && inGeneration;
-            });
+            // Get filtered Pokémon for this generation
+            const filteredPokemon = pokemonList
+                .filter((pokemon, index) => {
+                    const matchesSearch = pokemon.name.toLowerCase().includes(searchTerm);
+                    const matchesType = activeType === 'all' || pokemon.types.includes(activeType);
+                    const inGeneration = index >= range.start && index < range.end;
+                    return matchesSearch && matchesType && inGeneration;
+                })
+                .slice(startIndex, startIndex + pokemonPerPage);
 
-            // Add Pokémon cards to grid
+            // Clear and render only the chunk
+            if (startIndex === 0) {
+                pokemonGrid.innerHTML = '';
+            }
+
             filteredPokemon.forEach(pokemon => {
                 pokemonGrid.innerHTML += createPokemonHTML(pokemon);
             });
 
-            // Show message if no Pokémon found
-            if (filteredPokemon.length === 0) {
-                pokemonGrid.innerHTML = '<p>No Pokémon found matching your criteria.</p>';
+            // Add "Load More" button if there are more Pokémon
+            const totalFiltered = pokemonList.filter((pokemon, index) => {
+                const matchesSearch = pokemon.name.toLowerCase().includes(searchTerm);
+                const matchesType = activeType === 'all' || pokemon.types.includes(activeType);
+                const inGeneration = index >= range.start && index < range.end;
+                return matchesSearch && matchesType && inGeneration;
+            }).length;
+
+            if (startIndex + pokemonPerPage < totalFiltered) {
+                const loadMoreBtn = document.createElement('button');
+                loadMoreBtn.textContent = 'Load More Pokémon';
+                loadMoreBtn.className = 'load-more-btn';
+                loadMoreBtn.onclick = () => renderPokemonChunk(generation, startIndex + pokemonPerPage);
+                pokemonGrid.appendChild(loadMoreBtn);
             }
         }
 
         // Function to render all generations
         function renderAllGenerations() {
             for (let gen = 1; gen <= 6; gen++) {
-                renderPokemonByGeneration(gen);
+                renderPokemonChunk(gen, 0);
             }
         }
 
@@ -12101,17 +12162,20 @@
 
                     // If Pokémon page, render Pokémon
                     if (pageId === 'pokemon') {
-                        renderAllGenerations();
+                        renderPokemonChunk(currentGeneration, 0);
                     }
                 });
             });
 
             // Render Pokémon initially
-            //renderAllGenerations();
+            renderPokemonChunk(1, 0);
 
-            // Add search functionality
+            // Add search functionality with debouncing
             document.getElementById('pokemonSearch').addEventListener('input', function () {
-                renderAllGenerations();
+                clearTimeout(searchTimeout);
+                searchTimeout = setTimeout(() => {
+                    renderPokemonChunk(currentGeneration, 0);
+                }, 300);
             });
 
             // Add type filter functionality
@@ -12124,7 +12188,7 @@
                     e.target.classList.add('active');
 
                     // Re-render Pokémon
-                    renderAllGenerations();
+                    renderPokemonChunk(currentGeneration, 0);
                 }
             });
 
@@ -12132,6 +12196,7 @@
             document.getElementById('generationTabs').addEventListener('click', function (e) {
                 if (e.target.classList.contains('generation-tab')) {
                     const generation = e.target.getAttribute('data-generation');
+                    currentGeneration = generation;
 
                     // Update active tab
                     document.querySelectorAll('.generation-tab').forEach(tab => {
@@ -12144,6 +12209,9 @@
                         content.classList.remove('active');
                     });
                     document.getElementById(`generation-content-${generation}`).classList.add('active');
+
+                    // Render only this generation
+                    renderPokemonChunk(generation, 0);
                 }
             });
 
