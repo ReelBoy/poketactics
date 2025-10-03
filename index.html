@@ -11728,6 +11728,7 @@
         }
 
         // Function to add Pokémon and its evolution line to team
+        // Function to add Pokémon and its evolution line to team
         function addEvolutionLineToTeam(pokemonId) {
             const baseForm = getBaseForm(pokemonId);
 
@@ -11753,6 +11754,7 @@
             teamCost += baseForm.cost;
 
             updateTeamDisplay();
+            saveTeamToStorage(); // Save to localStorage
             return true;
         }
 
@@ -11769,6 +11771,7 @@
                 const removedPokemon = currentTeam.splice(pokemonIndex, 1)[0];
                 teamCost -= removedPokemon.cost;
                 updateTeamDisplay();
+                saveTeamToStorage(); // Save to localStorage
                 return true;
             }
 
@@ -11780,6 +11783,7 @@
             currentTeam = [];
             teamCost = 0;
             updateTeamDisplay();
+            clearTeamFromStorage(); // Clear from localStorage
         }
 
         // Function to create Pokémon HTML with team-building functionality
@@ -11854,7 +11858,46 @@
             </div>
         `;
         }
+        // Save team to localStorage
+        function saveTeamToStorage() {
+            const teamData = {
+                team: currentTeam.map(pokemon => pokemon.id),
+                cost: teamCost
+            };
+            localStorage.setItem('pokemonTacticsTeam', JSON.stringify(teamData));
+        }
 
+        // Load team from localStorage
+        function loadTeamFromStorage() {
+            const savedTeam = localStorage.getItem('pokemonTacticsTeam');
+            if (savedTeam) {
+                try {
+                    const teamData = JSON.parse(savedTeam);
+                    currentTeam = [];
+                    teamCost = 0;
+
+                    // Rebuild the team from saved IDs
+                    teamData.team.forEach(pokemonId => {
+                        const pokemon = pokemonList.find(p => p.id === pokemonId);
+                        if (pokemon) {
+                            currentTeam.push(pokemon);
+                            teamCost += pokemon.cost;
+                        }
+                    });
+
+                    return true;
+                } catch (e) {
+                    console.error('Error loading saved team:', e);
+                    return false;
+                }
+            }
+            return false;
+        }
+
+        // Clear team from storage
+        function clearTeamFromStorage() {
+            localStorage.removeItem('pokemonTacticsTeam');
+        }
         // Function to create team member HTML - now shows entire evolution line with costs
         function createTeamMemberHTML(pokemon) {
             const evolutionPath = getEvolutionPath(pokemon.id);
@@ -12048,7 +12091,7 @@
             const pokemonPage = document.createElement('div');
             pokemonPage.id = 'pokemon';
             pokemonPage.className = 'page';
-
+            loadTeamFromStorage();
             // Add search and filter functionality with generation tabs
             pokemonPage.innerHTML = `
             <h2>Pokémon Stats</h2>
