@@ -18181,11 +18181,11 @@
 
             for (let i = 0; i < evolutionFamily.length; i++) {
                 const currentPokemon = evolutionFamily[i];
-                const nextPokemon = evolutionFamily[i + 1];
 
                 path.push({
                     pokemon: currentPokemon,
-                    evolutionCost: nextPokemon ? currentPokemon.evolutionCost : null
+                    // Use the current Pokémon's OWN evolutionCost
+                    evolutionCost: currentPokemon.evolutionCost > 0 ? currentPokemon.evolutionCost : null
                 });
             }
 
