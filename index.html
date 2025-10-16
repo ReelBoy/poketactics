@@ -18148,21 +18148,23 @@
 
 
         // Function to get evolution family for a Pokémon
-        function getEvolutionFamily(pokemonId) {
-            const pokemon = pokemonList.find(p => p.id === pokemonId);
-            if (!pokemon || !pokemon.evolutionFamily) {
-                return [pokemonList.find(p => p.id === pokemonId)].filter(Boolean);
-            }
+        function getEvolutionPath(pokemonId) {
+    const evolutionFamily = getEvolutionFamily(pokemonId);
+    const path = [];
 
-            // Get all Pokémon in the same evolution family
-            return pokemonList
-                .filter(p => p.evolutionFamily === pokemon.evolutionFamily)
-                .sort((a, b) => {
-                    // Sort by evolution stage (assuming base forms have evolutionCost: 0)
-                    return a.evolutionCost - b.evolutionCost;
-                });
-        }
+    for (let i = 0; i < evolutionFamily.length; i++) {
+        const currentPokemon = evolutionFamily[i];
+        const nextPokemon = evolutionFamily[i + 1];
 
+        path.push({
+            pokemon: currentPokemon,
+            // Get evolution cost from the NEXT Pokémon, not current
+            evolutionCost: nextPokemon ? nextPokemon.evolutionCost : null
+        });
+    }
+
+    return path;
+}
         // Function to get the base form (first evolution) of a family
         function getBaseForm(pokemonId) {
             const evolutionFamily = getEvolutionFamily(pokemonId);
@@ -18781,4 +18783,5 @@
 </body>
 
 </html>
+
 
