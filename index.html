@@ -793,12 +793,12 @@
                 <p>Each team has a pool of evolution points starting at 0. Each pokemon that can evolve. You may choose to spend that number of points from your evolution pool to evolve your pokemon.</p>
                 <p>At the end of every turn, you gain one point. You gain 1 point for knocking out an opposing pokemon.</p>
             </div>
-        `     
-            }, 
+        `
+            },
             {
                 id: 'Dynamax',
                 title: 'Dynamax System',
-                content:  `
+                content: `
             <div class="rules-section">
                 <h3>Dynamaxing and Dynamax Moves</h3>
                 <p>In order to dynamax your pokemon must have a dynamax band as their item. All pokemon can dynamax (except Zacian, Zamazenta, and Eternatus) and some can gigantamax depending on the pokemon. When you dynamax or gigantamax you get a plus 4 on all stats except speed, when you dynamax or gigantamax your speed is lowered by -3 (this does not apply to pokemon with 5 speed or less). You can dynamax or gigantamax whenever you want but you only have it for three turns so use it sparingly, also you cannot evolve the dynamax pokemon when dynamaxed. Dynamax can only be used once so again use it sparingly. Dynamax and gigantamx also increase your hit box, your new hit box is all the tiles adjacent to you.
@@ -934,6 +934,66 @@ List of all Max moves effects
 
 </p>
             </div>`
+            },
+            {
+                id: 'items',
+                title: 'Items System',
+                content: `
+            <div class="rules-section">
+                <h3>Items</h3>
+                <table border="1px">
+                    <tr>
+                        <th>Item Name</th>
+                        <th>Effect</th>
+                        <th>Cost</th>
+                        <th>First Upgrade</th>
+                        <th>Second Upgrade</th>
+                    </tr>
+                    <tr>
+                        <td>Ability Shield</td>
+                        <td>This Item protects the user from the enemies abilities </td>
+                        <td>1 Point</td>
+                        <td>Cost to upgrade 1: Once upgraded this item also protects 1 adjacent ally   </td>
+                        <td>Cost to upgrade 3: Once upgraded this item also protects 3 adjacent allies  </td>
+                    </tr>
+                    <tr>
+                        <td>Absorb Bulb</td>
+                        <td>If the user is hit by a water move, no damage is taken and the user gets a +1 on special attack (This only works once) </td>
+                        <td>1 Point</td>
+                        <td>Cost to upgrade 1: Once upgraded this item works two times </td>
+                        <td>Cost to upgrade 2: Once upgraded this item works three times</td>
+                    </tr>
+                    <tr>
+                        <td>Amulet Coin </td>
+                        <td>This Item grants +1 evolution point when you knock out a pokemon.  </td>
+                        <td>1 Point</td>
+                        <td> Cost to upgrade 2: Once upgraded this item gives 2 evolution points for every pokemon you knock out</td>
+                        <td>Cost to upgrade 4: Once upgraded this item gives 3 evolution points per turn</td>
+                    </tr>
+                    <tr>
+                        <td>Air Ballon </td>
+                        <td>This Item protects the user from getting hit from a ground move. If hit by any other move the balloon pops and won’t work until upgraded.</td>
+                        <td>1 Point</td>
+                        <td>Cost to upgrade 1: Once upgraded this item can take two hits without popping. </td>
+                        <td>Cost to upgrade 2: Once upgraded this item can take three hits without popping.</td>
+                    </tr>
+                    <tr>
+                        <td>Assault Vest</td>
+                        <td>This Item grants the user a +1 on special defense but this item can’t be given to pokemon whose ability can cause a status effect </td>
+                        <td>1 Point</td>
+                        <td> Cost to upgrade 1: Once upgraded this item grants a +2 on special defense </td>
+                        <td>Cost to upgrade 3: Once upgraded this item grants a +3 on special defense </td>
+                    </tr>
+                    <tr>
+                        <td>Big Root</td>
+                        <td>This item gives pokemon who steal or give HP an extra boost when taking/giving health. +1 HP when taking health from opponents </td>
+                        <td>1 Point</td>
+                        <td>Cost to upgrade 2: Once upgraded this item will give +2 when taking/giving health</td>
+                        <td>Cost to upgrade 3: Once upgraded this item will give +3 when taking/giving health</td>
+                    </tr>
+                </table>
+            </div>
+        `
             }
         ];
 
@@ -17764,7 +17824,7 @@ List of all Max moves effects
                 cost: 0,
                 evolutionFamily: 'kangaskhan-family',
                 evolutionCost: 4
-            },  
+            },
             {
                 id: 'mega starmie',
                 name: 'Mega Starmie',
@@ -17884,7 +17944,7 @@ List of all Max moves effects
                 cost: 0,
                 evolutionFamily: 'chikorita-family',
                 evolutionCost: 4
-            }, 
+            },
             {
                 id: 'mega feraligatr',
                 name: 'Mega Feraligatr',
@@ -17959,7 +18019,7 @@ List of all Max moves effects
                 cost: 0,
                 evolutionFamily: 'heracross-family',
                 evolutionCost: 4
-            },          
+            },
             {
                 id: 'mega skarmory',
                 name: 'Mega Skarmory',
@@ -20040,49 +20100,3 @@ List of all Max moves effects
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
