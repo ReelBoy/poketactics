@@ -1451,7 +1451,7 @@ List of all Max moves effects
         // Team management functionality
         let currentTeam = [];
         let teamCost = 0;
-        const maxTeamCost = 2000;
+        const maxTeamCost = 200;
 
         // Define eration ranges
         const generationRanges = {
@@ -20030,7 +20030,11 @@ List of all Max moves effects
             }
 
             // Return the first Pokémon in the evolution family (the base form)
-            return evolutionFamily[0];
+            if (evolutionFamily == 'sqaumster-family') {
+                return evolutionFamily[1];
+            } else {
+                return evolutionFamily[0];
+            }
         }
 
         // Function to get evolution path with costs
@@ -20056,7 +20060,7 @@ List of all Max moves effects
             const baseForm = getBaseForm(pokemonId);
 
             if (!baseForm || !baseForm.cost) {
-                alert('This Pokémon cannot be added to a team (only base forms have costs).');
+                alert('This Pokémon cannot be added to a team. (only base forms have costs)');
                 return false;
             }
 
@@ -20068,8 +20072,7 @@ List of all Max moves effects
 
             // Check cost limit
             if (teamCost + baseForm.cost > maxTeamCost) {
-                alert(`Cannot add evolution line. Total cost would be ${teamCost + baseForm.cost}, exceeding maximum of ${maxTeamCost}.`);
-                return false;
+                alert(`Total cost is ${teamCost + baseForm.cost}, exceeding maximum of ${maxTeamCost}.`);
             }
 
             // Add only the base form to the team (but you get access to the whole evolution line)
@@ -20237,7 +20240,11 @@ List of all Max moves effects
                     `<span class="pokemon-type type-${type.toLowerCase()}">${type}</span>`
                 ).join('');
 
-                const isBaseForm = index === 0;
+                if (familyMember.id == 'sqaumster') {
+                    const isBaseForm = index === 1;
+                } else {
+                    const isBaseForm = index === 0;
+                }
                 const costDisplay = isBaseForm ? `<div>Team Cost: ${familyMember.cost}</div>` : '';
                 const borderColor = isBaseForm ? '#28a745' : '#17a2b8';
                 const evolutionCostDisplay = evolutionCost ?
@@ -20641,6 +20648,7 @@ List of all Max moves effects
 </body>
 
 </html>
+
 
 
 
