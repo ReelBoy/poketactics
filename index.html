@@ -19901,7 +19901,7 @@ List of all Max moves effects
                 id: 'pixelster',
                 name: 'Pixelster',
                 types: ['Normal',],
-                ability: 'Simplification: Any normal type pokemon within 2 tiles is considered a Sqaumster. Also, this Sqaumster-mon costs half price',
+                ability: 'Simplification: Any normal type pokemon within 2 tiles is considered a Sqaumster.<br><br>Upon evolving, put a Sqaumster on your team adjacent to this Sqaumster-mon(Only one per game)',
                 hp: 6,
                 atk: 1,
                 spAtk: 1,
@@ -19976,7 +19976,7 @@ List of all Max moves effects
                 id: 'sqaumking',
                 name: 'Sqaumking',
                 types: ['Normal', 'Psychic'],
-                ability: 'Sqaum Courage: All normal type pokemon within 2 tiles get a +1 on both attacks and speed<br><br>For some reason normal type pokemon get encouraged by this Sqaumster-mon.',
+                ability: 'Sqaum Courage: All normal type pokemon within 2 tiles get a +1 on both attacks and speed<br><br>For some reason normal type pokemon are encouraged by this Sqaumster-mon.',
                 hp: 8,
                 atk: 4,
                 spAtk: 4,
@@ -20048,7 +20048,7 @@ List of all Max moves effects
                 path.push({
                     pokemon: currentPokemon,
                     // Use the current Pokémon's OWN evolutionCost
-                    evolutionCost: currentPokemon.evolutionCost > 0 ? currentPokemon.evolutionCost : null
+                    evolutionCost: currentPokemon.evolutionCost > 0 || (currentPokemon.evolutionFamily === 'sqaumster-family' && currentPokemon.evolutionCost < 0) ? currentPokemon.evolutionCost : null
                 });
             }
 
@@ -20240,7 +20240,7 @@ List of all Max moves effects
                     `<span class="pokemon-type type-${type.toLowerCase()}">${type}</span>`
                 ).join('');
                 
-                const isBaseForm = index === 0;
+                const isBaseForm = (!(familyMember.evolutionFamily === 'sqaumster-family') && index === 0) || (familyMember.evolutionFamily === 'sqaumster-family' && index === 1);
                 const costDisplay = isBaseForm ? `<div>Team Cost: ${familyMember.cost}</div>` : '';
                 const borderColor = isBaseForm ? '#28a745' : '#17a2b8';
                 const evolutionCostDisplay = evolutionCost ?
@@ -20644,6 +20644,7 @@ List of all Max moves effects
 </body>
 
 </html>
+
 
 
 
