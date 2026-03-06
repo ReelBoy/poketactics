@@ -20030,7 +20030,7 @@ List of all Max moves effects
             }
 
             // Return the first Pokémon in the evolution family (the base form)
-            if (evolutionFamily == 'sqaumster-family') {
+            if (evolutionFamily[0].evolutionFamily == 'sqaumster-family') {
                 return evolutionFamily[1];
             } else {
                 return evolutionFamily[0];
@@ -20239,12 +20239,8 @@ List of all Max moves effects
                 const typeHTML = familyMember.types.map(type =>
                     `<span class="pokemon-type type-${type.toLowerCase()}">${type}</span>`
                 ).join('');
-
-                if (familyMember == 'sqaumster') {
-                    const isBaseForm = index === 1;
-                } else {
-                    const isBaseForm = index === 0;
-                }
+                
+                const isBaseForm = index === 0;
                 const costDisplay = isBaseForm ? `<div>Team Cost: ${familyMember.cost}</div>` : '';
                 const borderColor = isBaseForm ? '#28a745' : '#17a2b8';
                 const evolutionCostDisplay = evolutionCost ?
@@ -20648,6 +20644,7 @@ List of all Max moves effects
 </body>
 
 </html>
+
 
 
 
