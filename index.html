@@ -20125,7 +20125,6 @@ List of all Max moves effects
             // Only show add button on base forms (Pokémon with costs)
             const baseForm = getBaseForm(pokemon.id);
             const canAddToTeam = pokemon.cost &&
-                (teamCost + pokemon.cost <= maxTeamCost) &&
                 !currentTeam.find(p => p.id === baseForm.id);
 
             const addButtonHTML = pokemon.cost ?
@@ -20644,6 +20643,7 @@ List of all Max moves effects
 </body>
 
 </html>
+
 
 
 
