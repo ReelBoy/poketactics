@@ -19901,7 +19901,7 @@ List of all Max moves effects
                 id: 'sqaumster',
                 name: 'Sqaumster',
                 types: ['Normal',],
-                ability: 'Sqaumster Power: As long as this pokemon is on the field, allies may re-roll any roll of theirs to determine an effect like status conditions (One use per roll, does not stack, cool down of 2 turns if the re-roll helps the ally get rid and/or give effect).',
+                ability: 'Squamster\'s Choice: When this pokemon is on the field, allies may re-roll any roll of theirs to determine an effect like status conditions (One use per roll, does not stack, cool down of 2 turns if the re-roll helps the ally get rid and/or give effect)',
                 hp: 6,
                 atk: 6,
                 spAtk: 5,
@@ -19916,7 +19916,7 @@ List of all Max moves effects
                 id: 'gigantster',
                 name: 'Giganster',
                 types: ['Normal', 'Dragon'],
-                ability: 'Sqaumster Bite: Every time this pokemon defeats another pokemon, its attack increases by 1, If you defeat any sqaumster mon you get a +2 on attack.',
+                ability: 'Rampaging Sqaumster: Every time this pokemon defeats another pokemon, its attack increases by +1. If you defeat a Sqaumster-mon, get a +2 on attack instead',
                 hp: 10,
                 atk: 9,
                 spAtk: 5,
@@ -19928,25 +19928,10 @@ List of all Max moves effects
                 evolutionCost: 3
             },
             {
-                id: 'sqaum-star(devour)',
-                name: 'Sqaum-Star(devour)',
-                types: ['Normal', 'Dark'],
-                ability: 'Sqaumster Devour: This sqaumstermon can absorb any stat buff an adjacent ally or enemy may have, therefore they loose the buff and you gain it for 2 turns (attacking, defending, and moving turns depending on what buff you absorb).',
-                hp: 12,
-                atk: 11,
-                spAtk: 4,
-                def: 12,
-                spDef: 7,
-                speed: 6,
-                cost: 0,
-                evolutionFamily: 'sqaumster-family',
-                evolutionCost: 4
-            },
-            {
                 id: 'sqaum-star(trap)',
                 name: 'Sqaum-Star(trap)',
                 types: ['Normal', 'Fire'],
-                ability: 'Sqaumster Death: This squamstermon form (you can switch forms)explodes upon death, giving all pokemon within 2 tiles burn. Also upon faint if this pokemon has an absorbed buff this pokemon will realease it as damage, hurting the enemy depeding on how high the buff was.',
+                ability: 'Sqaum Death: This Squamster-mon form explodes upon death, giving all pokemon within 2 tiles burn. Also upon faint, if this pokemon has an absorbed buff then it releases it as damage (Damage equal to stat buff increase)\n(Can switch forms)',
                 hp: 12,
                 atk: 8,
                 spAtk: 12,
@@ -19958,10 +19943,25 @@ List of all Max moves effects
                 evolutionCost: 0
             },
             {
+                id: 'sqaum-star(devour)',
+                name: 'Sqaum-Star(devour)',
+                types: ['Normal', 'Dark'],
+                ability: 'Sqaum Devour: This Sqaumster-mon form can absorb a stat buff an adjacent pokemon has for 2 turns of its use (You steal their buff until you use it twice)',
+                hp: 12,
+                atk: 11,
+                spAtk: 4,
+                def: 12,
+                spDef: 7,
+                speed: 6,
+                cost: 0,
+                evolutionFamily: 'sqaumster-family',
+                evolutionCost: 4
+            },
+            {
                 id: 'sqaumking',
                 name: 'Sqaumking',
                 types: ['Normal', 'Psychic'],
-                ability: 'Squam Encourage: For some reason normal type pokemon get encuraged by this squamstermon, so all normal type pokemon within 2 tiles get a +1 on both attacks and speed',
+                ability: 'Squam Courage: For some reason normal type pokemon get encouraged by this Squamster-mon. All normal type pokemon within 2 tiles get a +1 on both attacks and speed',
                 hp: 8,
                 atk: 4,
                 spAtk: 4,
@@ -19976,7 +19976,7 @@ List of all Max moves effects
                 id: 'shiedster',
                 name: 'Sheildster',
                 types: ['Normal', 'Steel'],
-                ability: 'Squam Guard: This pokemon can protect adjacent allied pokemon giving them a +3 on defense and +4 on special defense, however for every turn this pokemon protects on the special defense side, it gets a -1 for both defenses (this can stack) for 3 turns (the counter will reset back to 3 if this sqaumstermon keeps protecting on the special defense side.',
+                ability: 'Squam Guard: This pokemon can protect adjacent allies giving them +3 on defense and +4 on special defense; however, for every time this pokemon helps against special attacks, it gets a -1 for both defenses for 2 turns (Debuff can stack, Debuff counter resets if special attacked again)',
                 hp: 8,
                 atk: 1,
                 spAtk: 1,
@@ -20626,6 +20626,7 @@ List of all Max moves effects
 </body>
 
 </html>
+
 
 
 
