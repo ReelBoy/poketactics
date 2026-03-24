@@ -690,12 +690,12 @@
             
             <div class="rules-section">
                 <h3>Dice System</h3>
-                <p>There are three types of die: Poke Dice, Great Dice, and Ultra Dice. Use this table to determine how many dice to roll depending on the stat you are rolling with.</p>
-                <p>If you roll above a 3, that dice scores a success. Each die success is worth a different point value:</p>
+                <p>There are three types of dice: Poke Dice, Great Dice, and Ultra Dice. Use the table to determine how many dice to roll depending on the stat you are rolling with.</p>
+                <p>If you roll above a 3 when attacking or 4 when defending, that dice scores successfully. Each dice is worth a different point value:</p>
                 <ul>
-                    <li>Each Poke Dice that rolls count for 1 success</li>
-                    <li>Each Great Dice that rolls count for 2 successes</li>
-                    <li>Each Ultra Dice that rolls count for 4 successes</li>
+                    <li>Poke Dice, 1 stat point</li>
+                    <li>Great Dice, 2 stat points</li>
+                    <li>Ultra Dice, 4 stat points</li>
                 </ul>
             </div>
         `
@@ -704,6 +704,14 @@
                 id: 'dice-table',
                 title: 'Dice Roll Table',
                 content: `
+            <div class="rules-section">
+                <h3>Dice Calculation</h3>
+                <p>Each color of Dice has a certain value when rolling using a stat:</p>
+                <p>Poke Dice: Red/Pink represent 1 stat point</p>
+                <p>Great Dice: Blue/Grey represent 2 stat points</p>
+                <p>Ultra Dice: Yellow/Tan represent 4 stat points</p>
+            </div>
+ 
             <table>
                 <thead>
                     <tr>
@@ -731,14 +739,23 @@
                     <tr><td>17</td><td>1P 4U</td></tr>
                     <tr><td>18</td><td>1G 4U</td></tr>
                     <tr><td>19</td><td>1P 1G 4U</td></tr>
+                    <tr><td>20</td><td>5U</td></tr>
                 </tbody>
             </table>
             
             <div class="rules-section">
                 <h3>Damage Calculation</h3>
-                <p>Compare the number of Attacking successes to the number of Defending successes. If the attacking successes are higher than the defending successes, the defending pokemon takes the difference in success as damage.</p>
-                <p>Super effective attacks score an automatic 2 successes.</p>
+                <p>Compare the total Attack succesfully rolled to the total Defending success. If the attack total is higher than the defending total, the defending pokemon takes the difference as damage.</p>
+                <p>Super effective attacks score an automatic +2 to the rolled total.</p>
                 <p>Once a pokemon hits 0 HP, it is unable to battle and is removed from play.</p>
+            </div>
+
+            <div class="rules-section">
+                <h3>Dice Roller</h3>
+                <p id="diceRolled"></p>
+                <p>Enter the stat value you\'re rolling for</p>
+                <input id="diceRolling">
+                <button onclick="diceRoll()">Roll</button>
             </div>
         `
             },
@@ -20005,6 +20022,20 @@ List of all Max moves effects
 
         ];
 
+        // Function to generate random numbers as dice rolls
+        function diceRoll() {
+            let diceStat = parseInt(diceRolling.value);
+            let diceUltra = Math.floor(diceStat/4);
+            let diceGreat = Math.floor((diceStat-diceUltra*4)/2);
+            let dicePoke = diceStat%2 == 1 ? 1 : 0;
+
+            document.getElementById("diceRolled").innerHTML = diceUltra ? "" : "No Ultra Rolls,<br>";
+            for (let i = 0; i < diceUltra; i++) {
+                document.getElementById("diceRolled").innerHTML += `Ultra Roll ${i+1}: ${Math.ceil(Math.random() * 6)},<br>`;
+            }
+            document.getElementById("diceRolled").innerHTML += diceGreat ? `Great Roll: ${Math.ceil(Math.random() * 6)},<br>` : "No Great Rolls,<br>";
+            document.getElementById("diceRolled").innerHTML += dicePoke ? `Poke Roll: ${Math.ceil(Math.random() * 6)}` : "No Poke Rolls";
+        }
 
         // Function to get evolution family for a Pokémon
         function getEvolutionFamily(pokemonId) {
@@ -20638,6 +20669,11 @@ List of all Max moves effects
 
             // Initialize team display
             updateTeamDisplay();
+
+            const slideNavItem = document.createElement('li');
+            slideNavItem.className = 'nav-item';
+            slideNavItem.innerHTML = `<a href="https://docs.google.com/presentation/d/1TjVdr0aGDc6YaTvB6iCE9D6wMmdzLtKsSBoP6CWS2Fo/edit?usp=sharing" target="_blank" title="A Google Slide Made By Cason">PokeOnline</a>`;
+            navList.appendChild(slideNavItem);
         });
     </script>
 </body>
