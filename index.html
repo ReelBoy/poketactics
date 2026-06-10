@@ -1862,17 +1862,18 @@ List of all Max moves effects
 
         // Define eration ranges
         const generationRanges = {
-            0: { start: 1109, end: 2010 },
-            1: { start: 0, end: 151 },     //  1: Bulbasaur to Mew
-            2: { start: 151, end: 251 },   // Gen 2: Chikorita to Celebi
-            3: { start: 251, end: 389 },   // Gen 3: Treecko to Deoxys
-            4: { start: 389, end: 507 },   // Gen 4: Turtwig to Arceus
-            5: { start: 507, end: 673 },   // Gen 5: Victini to Genesect
-            6: { start: 673, end: 751 },    // Gen 6: Chespin to Volcanion
-            7: { start: 751, end: 864 },        //Gen 7: Check end
-            8: { start: 864, end: 977 },
-            9: { start: 979, end: 1109 },
-
+            0: { start: 1202, end: 1236 },  // Other
+            1: { start: 0, end: 151 },      // Gen 1: Bulbasaur to Mew
+            2: { start: 151, end: 251 },    // Gen 2: Chikorita-Celebi
+            3: { start: 251, end: 389 },    // Gen 3: Treecko-Deoxys
+            4: { start: 389, end: 507 },    // Gen 4: Turtwig-Arceus
+            5: { start: 507, end: 673 },    // Gen 5: Victini-Genesect
+            6: { start: 673, end: 751 },    // Gen 6: Chespin-Volcanion
+            7: { start: 751, end: 864 },    // Gen 7: 
+            8: { start: 864, end: 977 },    // Gen 8: 
+            9: { start: 977, end: 1109 },   // Gen 9: 
+            10: { start: 1109, end: 1202},  // Mega Evolutions: Venasuar-
+            11: { start: 1236, end: 1243 }  // Pokopia Variants: Mosslax-
         };
 
         // Performance optimization variables
@@ -18518,6 +18519,7 @@ List of all Max moves effects
                 evolutionFamily: 'pecharunt-family',
                 evolutionCost: 0
             },
+            //Gen Mega 1109
             {
                 id: 'mega venusaur',
                 name: 'Mega Venusaur',
@@ -18582,7 +18584,7 @@ List of all Max moves effects
                 id: 'mega beedrill',
                 name: 'Mega Beedrill',
                 types: ['Bug', 'Poison'],
-                ability: 'Poison-Jab: If you hurt with this pokemon, the defending pokemon is poisoned. Also every time you get hit by physical attacks you take -3 damage and heal +2 (this stack but goes away when you move to a different tile)',
+                ability: 'Poison-Jab: If you hurt with this pokemon, the defending pokemon is poisoned. Also every time you get hit by physical attacks you take -3 (this stack but goes away when you move to a different tile)',
                 hp: 7,
                 atk: 15,
                 spAtk: 2,
@@ -18702,7 +18704,7 @@ List of all Max moves effects
                 id: 'mega pinsir',
                 name: 'Mega Pinsir',
                 types: ['Bug', 'Flying'],
-                ability: 'Pinch: Grab an enemy preventing them from moving and doing +2 damage every turn (enemies that are grabbed and attack this pokemon will do -2 damage)',
+                ability: 'Pinch: Grab an enemy preventing them from moving and doing +2 damage every turn',
                 hp: 7,
                 atk: 16,
                 spAtk: 7,
@@ -19914,6 +19916,7 @@ List of all Max moves effects
                 evolutionFamily: 'frigibax-family',
                 evolutionCost: 4
             },
+            // Gen Other(Hisuan & Misc.) 1202
             {
                 id: 'wyrdeer',
                 name: 'Wyrdeer',
@@ -19978,7 +19981,7 @@ List of all Max moves effects
                 id: 'male form basculegion',
                 name: 'Male Form Basculegion',
                 types: ['Water', 'Ghost'],
-                ability: 'Reckless: You may choose to do +4 damage, however this pokemon will lose 1',
+                ability: 'Reckless: You may choose to do +4 damage, however this pokemon will lose 2',
                 hp: 12,
                 atk: 11,
                 spAtk: 8,
@@ -20308,12 +20311,12 @@ List of all Max moves effects
                 id: 'pixelster',
                 name: 'Pixelster',
                 types: ['Normal',],
-                ability: 'Simplification: Any normal type pokemon within 2 tiles is considered a Sqaumster.<br><br>Sqaumster Recovery: Upon evolving, put a Sqaumster on your team adjacent to this Sqaumster (only one at a time)',
-                hp: 7,
-                atk: 1,
-                spAtk: 9,
-                def: 4,
-                spDef: 8,
+                ability: 'Simplification: Any normal type pokemon within 2 tiles is considered a Sqaumster.<br><br>Sqaumster Recovery: Upon evolving, put a Sqaumster on your team adjacent to this Sqaumster-mon(Only one per game)',
+                hp: 6,
+                atk: 0,
+                spAtk: 0,
+                def: 0,
+                spDef: 1,
                 speed: 10,
                 cost: 0,
                 evolutionFamily: 'sqaumster-family',
@@ -20409,7 +20412,37 @@ List of all Max moves effects
                 evolutionFamily: 'shieldster-family',
                 evolutionCost: 0
             },
-
+            {
+                id: '',
+                name: '',
+                types: ['', ''],
+                ability: '',
+                hp: '',
+                atk: '',
+                spAtk: '',
+                def: '',
+                spDef: '',
+                speed: '',
+                cost: 0,
+                evolutionFamily: '-family',
+                evolutionCost: 0
+            },
+            //Gen pokopia 1235
+            {
+                id: 'mosslax',
+                name: 'Mosslax',
+                types: ['Normal', 'Grass'],
+                ability: 'Mossy Aura: This pokemon can\'t move, Instead other allies can push it 2 tiles ahead when adjacent to it (1 tile when going up hill). All allies within 2 tiles of this pokemon get healed +2 HP (+3 if grass type) and get a +3 on physical attack',
+                hp: 17,
+                atk: 10,
+                spAtk: 7,
+                def: 10,
+                spDef: 11,
+                speed: 0,
+                cost: 54,
+                evolutionFamily: 'mosslax-family',
+                evolutionCost: 0
+            }
         ];
 
         // Function to generate random numbers as dice rolls
@@ -20805,7 +20838,7 @@ List of all Max moves effects
 
         // Function to render all generations
         function renderAllGenerations() {
-            for (let gen = 1; gen <= 6; gen++) {
+            for (let gen = 1; gen <= generationRanges.length-1; gen++) {
                 renderPokemonChunk(gen, 0);
             }
         }
@@ -20862,6 +20895,8 @@ List of all Max moves effects
             <button class="generation-tab" data-generation="7">Generation 7</button>
             <button class="generation-tab" data-generation="8">Generation 8</button>
             <button class="generation-tab" data-generation="9">Generation 9</button>
+            <button class="generation-tab" data-generation="10">Mega Evolutions</button>
+            <button class="generation-tab" data-generation="11">Pokopia Variants</button>
             <button class="generation-tab" data-generation="0">Other</button>
         </div>
         <div class="generation-content active" id="generation-content-1">
@@ -20909,9 +20944,19 @@ List of all Max moves effects
                 <!-- Generation 9 Pokémon cards will be inserted here -->
             </div>
         </div>
+        <div class="generation-content" id="generation-content-10">
+            <div class="pokemon-grid" id="pokemonGrid-gen-10">
+                <!-- Mega Pokémon cards will be inserted here -->
+            </div>
+        </div>
+        <div class="generation-content" id="generation-content-11">
+            <div class="pokemon-grid" id="pokemonGrid-gen-11">
+                <!-- Pokopia Pokémon cards will be inserted here -->
+            </div>
+        </div>
         <div class="generation-content" id="generation-content-0">
             <div class="pokemon-grid" id="pokemonGrid-gen-0">
-                <!-- Mega and Hisuian Pokémon cards will be inserted here -->
+                <!-- Hisuian and Misc. Pokémon cards will be inserted here -->
             </div>
         </div>
         
