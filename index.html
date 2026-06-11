@@ -20926,7 +20926,7 @@ List of all Max moves effects
         <div class="filter-section">
             <input type="text" class="search-box" id="pokemonSearch" placeholder="Search Pokémon...">
             <div class="filter-buttons" id="typeFilters">
-                <button class="filter-btn active" data-type="all">All</button>
+                <button class="filter-btn active" data-type="All">All</button>
                 ${Array.from(new Set(pokemonList.flatMap(p => p.types))).map(type =>
                 `<button class="filter-btn" data-type="${type}">${type}</button>`
             ).join('')}
