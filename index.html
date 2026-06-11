@@ -1862,7 +1862,7 @@ List of all Max moves effects
 
         // Define eration ranges
         const generationRanges = {
-            0: { start: 1202, end: 1236 },  // Other
+            0: { start: 1202, end: 1229 },  // Other
             1: { start: 0, end: 151 },      // Gen 1: Bulbasaur to Mew
             2: { start: 151, end: 251 },    // Gen 2: Chikorita-Celebi
             3: { start: 251, end: 389 },    // Gen 3: Treecko-Deoxys
@@ -1872,8 +1872,9 @@ List of all Max moves effects
             7: { start: 751, end: 864 },    // Gen 7: 
             8: { start: 864, end: 977 },    // Gen 8: 
             9: { start: 977, end: 1109 },   // Gen 9: 
-            10: { start: 1109, end: 1202},  // Mega Evolutions: Venasuar-
-            11: { start: 1236, end: 1243 }  // Pokopia Variants: Mosslax-
+            10: { start: 1109, end: 1202 },  // Mega Evolutions: Venasuar-Baxcalibur
+            11: { start: 1239, end: 1243 },  // Pokopia Variants: Mosslax-
+            12: { start: 1229, end: 1236 }   // Sqaumster Dimension: Pixelster-Shieldster
         };
 
         // Performance optimization variables
@@ -20308,6 +20309,22 @@ List of all Max moves effects
                 evolutionCost: 3
             },
             {
+                id: '',
+                name: 'All',
+                types: [''],
+                ability: 'Sun Tzu: "The supreme art of war is to subdue the enemy without fighting."',
+                hp: 'PAIN',
+                atk: '(っ.❛ ᴗ ❛.)っ',
+                spAtk: '💥',
+                def: 'Hmm...',
+                spDef: '<img src="https://media4.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3N3RhaTIzeHJmODltYmR3MzdoMXMyMXRkZnVzcTJvdHk0dXlvdnZ6aCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/DfkYBNcvSqteKODUNz/200.gif" alt="Pikachu GIF by Pokémon"/>',
+                speed: '🧑‍🦽',
+                cost: 'Undefinable',
+                evolutionFamily: '-family',
+                evolutionCost: '10 Billion Bitcoins'
+            },
+            // Gen Sqaumster 1229
+            {
                 id: 'pixelster',
                 name: 'Pixelster',
                 types: ['Normal',],
@@ -20414,7 +20431,7 @@ List of all Max moves effects
             },
             {
                 id: '',
-                name: '',
+                name: 'Normal',
                 types: ['', ''],
                 ability: '',
                 hp: '',
@@ -20427,7 +20444,37 @@ List of all Max moves effects
                 evolutionFamily: '-family',
                 evolutionCost: 0
             },
-            //Gen pokopia 1235
+            {
+                id: '',
+                name: 'Normal',
+                types: ['', ''],
+                ability: '',
+                hp: '',
+                atk: '',
+                spAtk: '',
+                def: '',
+                spDef: '',
+                speed: '',
+                cost: 0,
+                evolutionFamily: '-family',
+                evolutionCost: 0
+            },
+            {
+                id: '',
+                name: 'Normal',
+                types: ['', ''],
+                ability: '',
+                hp: '',
+                atk: '',
+                spAtk: '',
+                def: '',
+                spDef: '',
+                speed: '',
+                cost: 0,
+                evolutionFamily: '-family',
+                evolutionCost: 0
+            },
+            //Gen pokopia 1239
             {
                 id: 'mosslax',
                 name: 'Mosslax',
@@ -20959,6 +21006,12 @@ List of all Max moves effects
                 <!-- Hisuian and Misc. Pokémon cards will be inserted here -->
             </div>
         </div>
+        </div>
+        <div class="generation-content" id="generation-content-12">
+            <div class="pokemon-grid" id="pokemonGrid-gen-12">
+                <!-- Sqaumster Pokémon cards will be inserted here -->
+            </div>
+        </div>
         
     `;
 
@@ -21040,6 +21093,8 @@ List of all Max moves effects
             });
 
             // Add type filter functionality
+            let code = [];
+            let codeFinish = false;
             document.getElementById('typeFilters').addEventListener('click', function (e) {
                 if (e.target.classList.contains('filter-btn')) {
                     // Update active button
@@ -21051,6 +21106,28 @@ List of all Max moves effects
                     // Re-render Pokémon
                     renderPokemonChunk(currentGeneration, 0);
                 }
+                
+                //Sqaumster gen activation
+                //  Code Tracking
+                if(codeFinish == false){
+                    if(code.length == 0){
+                        if(`${document.querySelector('.filter-btn.active').getAttribute('data-type')}` == ''){
+                            code.push(`${document.querySelector('.filter-btn.active').getAttribute('data-type')}`);
+                        };
+                    }else if(code.length <= 4){
+                        code.push(`${document.querySelector('.filter-btn.active').getAttribute('data-type')}`);
+
+                        //  Code Verification
+                        if(code.join(',') == ',All,Normal,Normal,Normal'){
+                            code = [];
+                            codeFinish = true;
+                            document.getElementById('generationTabs').innerHTML += '<button class="generation-tab" data-generation="12">Sqaumstermon</button>';
+                        };
+                        
+                    }else{
+                        code = [];
+                    };
+                };
             });
 
             // Add generation tab functionality
