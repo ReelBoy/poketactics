@@ -20754,7 +20754,7 @@ List of all Max moves effects
                 const isBaseForm = (!(familyMember.evolutionFamily === 'sqaumster-family') && index === 0) || (familyMember.evolutionFamily === 'sqaumster-family' && index === 1);
                 const costDisplay = isBaseForm ? `<div>Team Cost: ${familyMember.cost}</div>` : '';
 
-                const pictureHTML = pokemon.picture ? `<div>${pokemon.picture} style="max-width:100px; height:auto;" loading="lazy"/></div>` : '';
+                const pictureHTML = familyMember.picture ? `<div>${familyMember.picture} style="max-width:100px; height:auto;" loading="lazy"/></div>` : '';
                 
                 const borderColor = isBaseForm ? '#28a745' : '#17a2b8';
                 const evolutionCostDisplay = evolutionCost ?
