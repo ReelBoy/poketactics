@@ -20851,7 +20851,7 @@ List of all Max moves effects
             const filteredPokemon = pokemonList
                 .filter((pokemon, index) => {
                     const matchesSearch = pokemon.name.toLowerCase().includes(searchTerm);
-                    const matchesType = activeType === 'all' || pokemon.types.includes(activeType);
+                    const matchesType = activeType === 'All' || pokemon.types.includes(activeType);
                     const inGeneration = index >= range.start && index < range.end;
                     return matchesSearch && matchesType && inGeneration;
                 })
@@ -20869,7 +20869,7 @@ List of all Max moves effects
             // Add "Load More" button if there are more Pokémon
             const totalFiltered = pokemonList.filter((pokemon, index) => {
                 const matchesSearch = pokemon.name.toLowerCase().includes(searchTerm);
-                const matchesType = activeType === 'all' || pokemon.types.includes(activeType);
+                const matchesType = activeType === 'All' || pokemon.types.includes(activeType);
                 const inGeneration = index >= range.start && index < range.end;
                 return matchesSearch && matchesType && inGeneration;
             }).length;
