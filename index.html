@@ -656,7 +656,7 @@
         <header>
             <h1>⚔Poké Tactics⚙</h1>
             <div class="subtitle">Game Rules & Pokémon Stats</div>
-            <div class="subtitle"><img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW4xdXFxYzZjMTNsOHUwOXljbHo0eDY0dmlkMWptMXN5b2RlcWE5ayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Iyc2wjiZ5ruRjxsKKJ/200.gif" alt="Gotta Catch Em All GIF by Pokémon"/></div>
+            <div class="subtitle" style="overflow: hidden;"><img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW4xdXFxYzZjMTNsOHUwOXljbHo0eDY0dmlkMWptMXN5b2RlcWE5ayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Iyc2wjiZ5ruRjxsKKJ/200.gif" alt="Gotta Catch Em All GIF by Pokémon" style="max-width: 100px; height: auto; transform: scale(4.0);" loading="lazy"/></div>
         </header>
 
         <div class="content">
@@ -1878,7 +1878,7 @@ List of all Max moves effects
             8: { start: 864, end: 977 },    // Gen 8: 
             9: { start: 977, end: 1109 },   // Gen 9: 
             10: { start: 1109, end: 1202 },  // Mega Evolutions: Venasuar-Baxcalibur
-            11: { start: 1239, end: 1243 },  // Pokopia Variants: Mosslax-
+            11: { start: 1239, end: 1243 },  // Pokopia Variants: Mosslax-Tinkmaster
             12: { start: 1229, end: 1236 }   // Sqaumster Dimension: Pixelster-Shieldster
         };
 
@@ -20322,7 +20322,7 @@ List of all Max moves effects
                 atk: '(っ.❛ ᴗ ❛.)っ',
                 spAtk: '💥',
                 def: 'Hmm...',
-                spDef: '<img src="https://media4.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3N3RhaTIzeHJmODltYmR3MzdoMXMyMXRkZnVzcTJvdHk0dXlvdnZ6aCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/DfkYBNcvSqteKODUNz/200.gif" alt="Pikachu GIF by Pokémon"/>',
+                spDef: '<img src="https://media4.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3N3RhaTIzeHJmODltYmR3MzdoMXMyMXRkZnVzcTJvdHk0dXlvdnZ6aCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/DfkYBNcvSqteKODUNz/200.gif" alt="Pikachu GIF by Pokémon" style="max-width:100px; height:auto;" loading="lazy"/>',
                 speed: '🧑‍🦽',
                 cost: ' Sanity',
                 evolutionFamily: '-family',
@@ -20483,6 +20483,7 @@ List of all Max moves effects
             {
                 id: 'mosslax',
                 name: 'Mosslax',
+                picture: '<img src="https://www.serebii.net/pokemonpokopia/mosslax.png" alt="Mosslax"',
                 types: ['Normal', 'Grass'],
                 ability: 'Mossy Aura: This pokemon can\'t move, Instead other allies can push it 2 tiles ahead when adjacent to it (1 tile when going up hill). All allies within 2 tiles of this pokemon get healed +2 HP (+3 if grass type) and get a +3 on physical attack',
                 hp: 17,
@@ -20491,9 +20492,9 @@ List of all Max moves effects
                 def: 10,
                 spDef: 11,
                 speed: 0,
-                cost: 54,
-                evolutionFamily: 'mosslax-family',
-                evolutionCost: 0
+                cost: 0,
+                evolutionFamily: 'munchlax-family',
+                evolutionCost: 3
             }
         ];
 
@@ -20628,6 +20629,8 @@ List of all Max moves effects
             const evolutionHTML = pokemon.evolutionCost ?
                 `<div class="evolution-info">Evolution Cost: ${pokemon.evolutionCost}</div>` : '';
 
+            const pictureHTML = pokemon.picture ? `<div>${pokemon.picture} style="max-width:200px; height:auto;" loading="lazy"/></div>` : '';
+
             // Only show add button on base forms (Pokémon with costs)
             const baseForm = getBaseForm(pokemon.id);
             const canAddToTeam = pokemon.cost &&
@@ -20650,6 +20653,9 @@ List of all Max moves effects
             <div class="pokemon-header">
                 <div class="pokemon-name">${pokemon.name}</div>
                 ${costHTML}
+            </div>
+            <div class="pokemon-picture">
+                ${pictureHTML}
             </div>
             <div class="pokemon-types">
                 ${typeHTML}
@@ -20747,6 +20753,9 @@ List of all Max moves effects
                 
                 const isBaseForm = (!(familyMember.evolutionFamily === 'sqaumster-family') && index === 0) || (familyMember.evolutionFamily === 'sqaumster-family' && index === 1);
                 const costDisplay = isBaseForm ? `<div>Team Cost: ${familyMember.cost}</div>` : '';
+
+                const pictureHTML = pokemon.picture ? `<div>${pokemon.picture} style="max-width:100px; height:auto;" loading="lazy"/></div>` : '';
+                
                 const borderColor = isBaseForm ? '#28a745' : '#17a2b8';
                 const evolutionCostDisplay = evolutionCost ?
                     `<div class="evolution-cost">Evolution Cost: ${evolutionCost}</div>` : '';
@@ -20757,6 +20766,9 @@ List of all Max moves effects
                     <div class="pokemon-name">${familyMember.name} ${isBaseForm ? '(Base)' : ''}</div>
                     ${costDisplay}
                     ${isBaseForm ? `<button class="remove-from-team-btn" data-pokemon-id="${familyMember.id}" title="Remove evolution line">×</button>` : ''}
+                </div>
+                <div class="pokemon-picture">
+                    ${pictureHTML}
                 </div>
                 <div class="pokemon-types">
                     ${typeHTML}
