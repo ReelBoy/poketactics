@@ -322,6 +322,10 @@
             background-color: #705848;
         }
 
+        .type- {
+            background-color: #000000;
+        }
+
         /* Search and Filter */
         .search-box {
             margin-bottom: 20px;
@@ -650,8 +654,9 @@
 <body>
     <div class="container">
         <header>
-            <h1>Poké Tactics</h1>
+            <h1>⚔Poké Tactics⚙</h1>
             <div class="subtitle">Game Rules & Pokémon Stats</div>
+            <div class="subtitle"><img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExZW4xdXFxYzZjMTNsOHUwOXljbHo0eDY0dmlkMWptMXN5b2RlcWE5ayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/Iyc2wjiZ5ruRjxsKKJ/200.gif" alt="Gotta Catch Em All GIF by Pokémon"/></div>
         </header>
 
         <div class="content">
@@ -673,7 +678,7 @@
         const pages = [
             {
                 id: 'rules',
-                title: 'Game Rules',
+                title: 'Game Rules📜',
                 content: `
             <div class="rules-section">
                 <h2>*Dice Roller in "Dice Roll Table" tab</h2>
@@ -706,7 +711,7 @@
             },
             {
                 id: 'dice-table',
-                title: 'Dice Roll Table',
+                title: 'Dice Roll Table🎲',
                 content: `
             <div class="rules-section">
                 <h3>Dice Calculation</h3>
@@ -755,7 +760,7 @@
             },
             {
                 id: 'turns-status',
-                title: 'Turns & Status Conditions',
+                title: 'Turns🔄 & Status Conditions❄',
                 content: `
             <div class="rules-section">
                 <h3>Turns</h3>
@@ -799,7 +804,7 @@
             },
             {
                 id: 'evolution',
-                title: 'Evolution System',
+                title: 'Evolution System💎',
                 content: `
             <div class="rules-section">
                 <h3>Evolution Points</h3>
@@ -810,7 +815,7 @@
             },
                         {
                 id: 'weather',
-                title: 'Weather System',
+                title: '☀Weather System🌧',
                 content: `
             <div class="rules-section">
                 <h3>Weather System</h3>
@@ -989,7 +994,7 @@ All non Dragon and Dark types are immune to status conditions.
             },
             {
                 id: 'Dynamax',
-                title: 'Dynamax System',
+                title: 'Dynamax System🐋',
                 content: `
             <div class="rules-section">
                 <h3>Dynamaxing and Dynamax Moves</h3>
@@ -1129,7 +1134,7 @@ List of all Max moves effects
             },
             {
                 id: 'items',
-                title: 'Items System',
+                title: 'Items System🪠🧺',
                 content: `
             <div class="rules-section">
                 <h3>Items</h3>
@@ -20912,7 +20917,7 @@ List of all Max moves effects
             // Add navigation for Pokémon pages
             const pokemonNavItem = document.createElement('li');
             pokemonNavItem.className = 'nav-item';
-            pokemonNavItem.innerHTML = `<a href="#" class="nav-link" data-page="pokemon">Pokémon Stats</a>`;
+            pokemonNavItem.innerHTML = `<a href="#" class="nav-link" data-page="pokemon">Pokémon Stats🔍</a>`;
             navList.appendChild(pokemonNavItem);
 
             // Create Pokémon page with generation tabs
@@ -20922,7 +20927,7 @@ List of all Max moves effects
             loadTeamFromStorage();
             // Add search and filter functionality with generation tabs
             pokemonPage.innerHTML = `
-        <h2>Pokémon Stats</h2>
+        <h2>Pokémon Stats🔍</h2>
         <div class="filter-section">
             <input type="text" class="search-box" id="pokemonSearch" placeholder="Search Pokémon...">
             <div class="filter-buttons" id="typeFilters">
@@ -21020,7 +21025,7 @@ List of all Max moves effects
             // Add navigation for Team Builder
             const teamNavItem = document.createElement('li');
             teamNavItem.className = 'nav-item';
-            teamNavItem.innerHTML = `<a href="#" class="nav-link" data-page="team-builder">Team Builder</a>`;
+            teamNavItem.innerHTML = `<a href="#" class="nav-link" data-page="team-builder">Team Builder📌🪛</a>`;
             navList.appendChild(teamNavItem);
 
             // Create Team Builder page
@@ -21028,7 +21033,7 @@ List of all Max moves effects
             teamPage.id = 'team-builder';
             teamPage.className = 'page';
             teamPage.innerHTML = `
-        <h2>Team Builder</h2>
+        <h2>Team Builder📌🪛</h2>
         <div class="team-info">
             <div class="team-stats">
                 <div>Team Cost: <span id="teamCost">0</span> / ${maxTeamCost}</div>
